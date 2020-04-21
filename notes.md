@@ -17,3 +17,6 @@ https://wang.works/portfolio/code/Reinforcement-Learning-Policy-Gradient-Methods
 https://github.com/maximecb/gym-minigrid
 
 https://github.com/lcswillems/rl-starter-files
+
+### How to use
+https://towardsdatascience.com/reinforcement-learning-with-openai-d445c2c687d2
