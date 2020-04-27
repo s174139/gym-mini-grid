@@ -2,6 +2,7 @@ from agents import *
 # import gym
 from gym_minigrid.wrappers import *
 import shutil
+import os.path
 
 def perform_exp(methods, envn, gamma=0.99, epsilon=0.1, alpha=0.05, lamb=0.9, del_prev = False, n_runs = 1): 
 
@@ -26,7 +27,7 @@ def perform_exp(methods, envn, gamma=0.99, epsilon=0.1, alpha=0.05, lamb=0.9, de
     experiments = []
     for k, (name,agent) in enumerate(methods):
         expn = f"experiments/{envn}_{name}"
-        if del_prev:
+        if del_prev & os.path.exists(expn):
             shutil.rmtree(expn)
         train(env, agent, expn, num_episodes=500, max_runs=10)
         experiments.append(expn)
