@@ -1,8 +1,9 @@
 from agents import *
 # import gym
 from gym_minigrid.wrappers import *
+import shutil
 
-def perform_exp(methods, envn, gamma=0.99, epsilon=0.1, alpha=0.05, lamb=0.9): 
+def perform_exp(methods, envn, gamma=0.99, epsilon=0.1, alpha=0.05, lamb=0.9, del_prev = False, n_runs = 1): 
 
     env = gym.make(envn)
 
@@ -25,9 +26,14 @@ def perform_exp(methods, envn, gamma=0.99, epsilon=0.1, alpha=0.05, lamb=0.9):
     experiments = []
     for k, (name,agent) in enumerate(methods):
         expn = f"experiments/{envn}_{name}"
+        if del_prev:
+            shutil.rmtree(expn)
         train(env, agent, expn, num_episodes=500, max_runs=10)
         experiments.append(expn)
-    main_plot(experiments, smoothing_window=10, resample_ticks=200)
-    plt.ylim([-100, 0])
-    savepdf(envn)
-    plt.show()
+    if n_runs > 1:
+        perform_exp(method_names, envn, gamma, epsilon, alpha, lamb, del_prev = False, n_runs = n_runs-1)
+    else:
+        main_plot(experiments, smoothing_window=10, resample_ticks=200)
+        plt.ylim([-100, 0])
+        savepdf(envn)
+        plt.show()

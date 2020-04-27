@@ -1,9 +1,9 @@
 # Own
-experiments
-
+experiments/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
+Code/__pycache__/perform_exp.cpython-36.pyc
 *.py[cod]
 *$py.class
 
