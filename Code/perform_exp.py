@@ -1,5 +1,6 @@
 from agents import *
-import gym
+# import gym
+from gym_minigrid.wrappers import *
 
 def perform_exp(methods, envn, gamma=0.99, epsilon=0.1, alpha=0.05, lamb=0.9): 
 
